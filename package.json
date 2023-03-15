@@ -1,0 +1,15 @@
+{
+  "name": "bookmyshow",
+  "version": "1.0.0",
+  "description": "book the movie on the theater ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nitesh Kumar Ram",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21"
+  }
+}
