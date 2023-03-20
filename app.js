@@ -90,6 +90,7 @@ async function init() {
 }
 
 require('./routes/movie.route')(app);
+require('./routes/theatre.route')(app);
 
 app.listen(serverConfig.PORT, () => {
     console.log("server started is this port number: ", serverConfig.PORT);

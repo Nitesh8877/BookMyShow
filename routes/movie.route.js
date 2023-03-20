@@ -1,6 +1,18 @@
-const MovieController=require('../controllers/movie.controller');
+const movieController = require('../controllers/movie.controller')
+const verifyMovieReqBody = require('../middalware/verifyMovieReqBody')
 
-module.exports=function(app){
-    app.get("/mba/api/movies",MovieController.getAllMovies);
-    app.get("/mba/api/movie/:id",MovieController.getMovieById);
+/**
+ * Routes for the movie resource
+ */
+module.exports = function (app) {
+    app.get('/mba/api/movies', movieController.getAllMovies)
+    app.get('/mba/api/movies/:id', movieController.getMovieById)
+    app.post('/mba/api/movies',
+        [verifyMovieReqBody.validateMovieRequestBody],
+        movieController.createMovie)
+    app.put("/mba/api/movies/:id",
+        [verifyMovieReqBody.validateMovieRequestBody],
+        movieController.updateMovie);
+    app.delete("/mba/api/movies/:id",
+        movieController.deleteMovie);
 }

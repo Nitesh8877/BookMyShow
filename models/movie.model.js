@@ -13,7 +13,7 @@ const movieSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
-       
+        
     },
     casts: {
         type: [String],
@@ -45,7 +45,7 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required :true
     },
-    releaseStatus : {
+    releaseStatus : { 
         type : String,
         enum:['RELEASED','UNRELEASED','BLOCKED'],
         default:"RELEASED",
