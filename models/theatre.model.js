@@ -35,6 +35,15 @@ const theatreSchema = new mongoose.Schema({
         default: () => {
             return Date.now();
         }
+    },
+    movies:{
+        type:[mongoose.SchemaTypes.ObjectId],
+        ref:"Movie"
+    },
+      ownerId: {
+        type: mongoose.SchemaTypes.ObjectId,
+        required: true,
+        ref: "User"
     }
 
 }, {

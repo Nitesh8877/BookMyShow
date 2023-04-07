@@ -1,5 +1,5 @@
 const constants = require("../utils/constant");
-
+const Movies=require('../models/movie.model');
 
 validateMovieRequestBody = async (req, res, next) => {
 
@@ -41,6 +41,22 @@ validateMovieRequestBody = async (req, res, next) => {
             message: "Failed! Movie director is not provided !"
         });
 
+    }
+
+    try {
+        let movie=await Movies.findOne({
+            name:req.body.name,
+            director:req.body.director
+        })
+        if(movie!=null){
+            return res.status(200).send("Failed! Movie Already there ")
+        }
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send({
+            message:"some internal error occured"
+        })
     }
 
     next();
