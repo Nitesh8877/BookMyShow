@@ -25,6 +25,7 @@ exports.signup=async(req,res)=>{
             userType:req.body.userType,
             userStatus:req.body.userStatus,
             password:bcrypt.hashSync(req.body.password,8),
+            
         })
         let response={
             user:user.name,
@@ -78,6 +79,23 @@ exports.singin=async(req,res)=>{
     } catch (error) {
         res.status(500).send({
             message:"Internal server error  occured"
+        })
+    }
+}
+
+exports.getAllUsers=async(req,res)=>{
+    try {
+        let result=await User.find()
+        res.status(200).send({
+            message:"fetch data succefully",
+            data:result
+        })
+        
+    } catch (error) {
+        res.satus(500).send({
+            message:"Something went wrong",
+            status:false,
+            ErrorMessage:error.message
         })
     }
 }

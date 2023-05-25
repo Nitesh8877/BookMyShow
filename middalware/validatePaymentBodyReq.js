@@ -1,6 +1,6 @@
 const Payment=require('../models/payment.model');
 const ObjectId=require('mongoose').Types.ObjectId
-const constant=require('../utils/constant');
+
 const Booking=require('../models/booking.model')
 /**
  * validate the all details
@@ -13,14 +13,15 @@ const Booking=require('../models/booking.model')
 const validatePaymentReqBody=async(req,res,next)=>{
 
     //validate for the booking id
+    console.log(req.body)
 
-    if(!req.params.bookingId){
+    if(!req.body.bookingId){
         return res.status(400).send({
             message:"Failed! Booking Id is not provied"
         })
     }
 
-    if(!ObjectId.isValid(req.params.bookingId)){
+    if(!ObjectId.isValid(req.body.bookingId)){
         return res.status(400).send({
             message:"Failed! Booking Id Provied is Wrong"
         })
@@ -34,10 +35,11 @@ const validatePaymentReqBody=async(req,res,next)=>{
             message:"Failed! Booking Id passed does't exits! "
         })
     }
+
+
     /**
      * Check for the amount
      */
-    console.log(req.body.amount, booking)
 
     if(req.body.amount<booking.totalCost){
         return res.status(400).send({

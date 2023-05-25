@@ -5,6 +5,7 @@ const jwt=require('../middalware/auth.middleware');
  * Routes for the movie resource
  */
 
+
 module.exports = function (app) {
     app.get("/mba/api/theatres",[jwt.verifyToken] ,theatreController.getAllTheatres);
     app.get("/mba/api/theatres/:id", [jwt.verifyToken],theatreController.getTheatre);

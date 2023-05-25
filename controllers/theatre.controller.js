@@ -2,6 +2,7 @@ const Theatre = require('../models/theatre.model')
 const Movie=require('../models/movie.model')
 const userModel=require('../models/user.model')
 const {sendEmail} =require('../utils/NotificationClinet')
+const constant = require('../utils/constant')
 exports.createTheatre = async (req, res) => {
     const theatreObject = {
         name: req.body.name,
@@ -43,7 +44,17 @@ exports.getAllTheatres = async (req, res) => {
     }
 
     try {
+        console.log(req.userId)
+        let user=await userModel.findOne({userId:req.userId})
+        if(user.userType===constant.userType.client){
+            queryObj.ownerId=user._id
+        }
         const theatres = await Theatre.find(queryObj);
+        if(req.query.movieId!=undefined){
+            theatres=theatres.filter(
+                t=>t.movies.includes(req.query.movieId)
+            )
+        }
         res.status(200).send(theatres);
     } catch (e) {
         console.log("Get all failed beacuase: ", e.message)

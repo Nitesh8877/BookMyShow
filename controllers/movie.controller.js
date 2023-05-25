@@ -25,13 +25,9 @@ exports.getMovieById=async (req,res)=>{
         let movie=await Movie.find({
             _id:req.params.id
         })
-        res.status(200).send({
-            message:"fetch data successfull",
-            success:true,
-            data:movie
-        })
+        res.status(200).send(movie)
     }catch(err){
-        res.status(200).send({
+        res.status(500).send({
             message:"fetch data failed",
             success:false,
             data:{}

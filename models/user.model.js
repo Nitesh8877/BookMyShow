@@ -30,7 +30,11 @@ const UserScehma=new mongoose.Schema({
         type:String,
         requried:true,
         default:"APPROVED"
-    }
+    },
+    // imagePath:{
+    //     type:String,
+    //     requried:true,
+    // }
 
 
 },{timestamps:true})

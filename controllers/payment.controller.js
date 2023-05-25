@@ -3,15 +3,17 @@ const Booking=require('../models/booking.model');
 const constant = require('../utils/constant');
 const User=require('../models/user.model');
 const {sendEmail} =require('../utils/NotificationClinet')
+
 /**
  * user->theatre->movies->booking->payment
  */
 
 exports.createPayment=async(req,res)=>{
-    let bookingId=req.params.bookingId;
+
     let booking=await Booking.findOne({
-        _id:bookingId
+        _id:req.body.bookingId
     })
+    console.log(booking)
     let bookingTime=booking.createdAt;
     let currentTime=Date.now();
 
@@ -40,20 +42,17 @@ exports.createPayment=async(req,res)=>{
             booking.status=constant.bookingStatus.completed
             await booking.save();
         let user=await User.findOne({
-            userId:req.userId
+            "userId":req.userId
         })
         console.log(user,req.userId)
-        sendEmail(payment._id, "Payment successful for the booking id: "
-        +req.body.bookingId, JSON.stringify(booking),user.email,
-        'mba-no-reply@mba.com'
-        )
-        res.status(200).send({
-            message:"Payment is success",
-            status:true,
-            data:payment
-        })
+        // sendEmail(payment._id, "Payment successful for the booking id: "
+        // +req.body.bookingId, JSON.stringify(booking),user.email,
+        // 'mba-no-reply@mba.com'
+        // )
+        res.status(200).send(payment)
 
     } catch (error) {
+        console.log(error)
         res.status(500).send({
             message:"Something went wrong 3",
             status:constant.paymentStatus.failed,

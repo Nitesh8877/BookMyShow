@@ -9,12 +9,16 @@ const User=require('./models/user.model');
 const Payment=require('./models/payment.model');
 const bcrypt=require('bcryptjs');
 const constant=require('./utils/constant');
+const cors=require('cors')
+
 //Initializing express
 const app = express();
+app.use(cors())
 
 //Using the bodyParser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
+// app.use('./uploads',express.static('./uploads'));
 
 /**
  * DB connection 
@@ -27,6 +31,7 @@ db.once("open", () => {
     console.log("Connected to mongo DB");
     init();
 })
+
 
 async function init() {
 
@@ -89,8 +94,8 @@ async function init() {
             description: "Comedy Masala Movie",
             casts: ["Akshay Kumar", "Jacqueline Fernandiz"],
             director: "Farhad Samji",
-            trailerUrl: "http://bacchanpandey/trailers/1",
-            posterUrl: "http://bacchanpandey/posters/1",
+            trailerUrl: "youtube.com/watch?v=cpNaGiBhXiM",
+            posterUrl: "https://radiosargam.com.fj/wp-content/uploads/2022/01/Akshay-Kumar-starrer-Bachchan-Pandey-to-release-on-March-18-2022-new-posters-unveiled.jpg",
             language: "Hindi",
             releaseDate: "18-03-2022",
             releaseSatus: "RELEASED"
@@ -100,8 +105,8 @@ async function init() {
             description: "Intense Drama Movie",
             casts: ["Vidya Balan", "Shefali Shah"],
             director: "Suresh Triveni",
-            trailerUrl: "http://jalsa/trailers/1",
-            posterUrl: "http://jalsa/posters/1",
+            trailerUrl: "youtube.com/watch?v=4becPo5QchY",
+            posterUrl: "https://i.pinimg.com/originals/31/e2/5e/31e25e943ac42c8701b4b294adca98ae.jpg",
             language: "Hindi",
             releaseDate: "18-03-2022",
             releaseSatus: "RELEASED"
@@ -111,8 +116,8 @@ async function init() {
             description: "Comedy Drama Movie",
             casts: ["Amitabh Bachchan", "Abhinay Raj"],
             director: "Nagraj Manjule",
-            trailerUrl: "http://jhund/trailers/1",
-            posterUrl: "http://jhund/posters/1",
+            trailerUrl: "youtube.com/watch?v=48glMezopQ4",
+            posterUrl: "https://1.bp.blogspot.com/-HTa8-2_NoHE/XiVx8KEj8CI/AAAAAAAAuJM/Z_xgeoNxTXcZlu4pP3eKUj-It_UaRIkZwCNcBGAsYHQ/s1600/Jhund-Poster-1.jpg",
             language: "Hindi",
             releaseDate: "04-03-2022",
             releaseSatus: "RELEASED"
@@ -122,8 +127,8 @@ async function init() {
             description: "Comedy Drama Movie",
             casts: ["Prabhas", "Pooja Hegde"],
             director: "Radha Krishna Kumar",
-            trailerUrl: "http://RadheShyam/trailers/1",
-            posterUrl: "http://RadheShyam/posters/1",
+            trailerUrl: "https://www.youtube.com/watch?v=ZAP6q_Zv-4g",
+            posterUrl: "https://th.bing.com/th/id/R.691e550e5efcc39ff27bdbe26197821a?rik=cRLANTlRUHPD9g&riu=http%3a%2f%2ftrendraja.in%2fwp-content%2fuploads%2f2020%2f07%2fRadhe-Shyam-Latest-Poster-hd-768x1366.jpg&ehk=m6zct8gpeVmiukrCN6OQD0HpPVTqY2dWoBXZrG%2fiE6E%3d&risl=&pid=ImgRaw&r=0",
             language: "Hindi",
             releaseDate: "11-03-2022",
             releaseSatus: "RELEASED"
@@ -133,8 +138,8 @@ async function init() {
             description: "Intense Movie",
             casts: ["Mithun Chakraborty", "Anupam Kher"],
             director: "Vivek Agnihotri",
-            trailerUrl: "http://TheKashmirFiles/trailers/1",
-            posterUrl: "http://TheKashmirFiles/posters/1",
+            trailerUrl: "https://www.youtube.com/watch?v=A179apttY58",
+            posterUrl: "https://m.media-amazon.com/images/M/MV5BMDJiOWU4NDctMGE4OS00OWQ4LWJkZTQtN2QzMzA2ZTY3Y2NkXkEyXkFqcGdeQXVyMTIyNzY0NTMx._V1_.jpg",
             language: "Hindi",
             releaseDate: "11-03-2022",
             releaseSatus: "RELEASED"
